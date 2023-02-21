@@ -12,7 +12,7 @@ function App() {
   const handleSubmit = (e) => {
     e.preventDefault();
     
-    fetch('http://192.168.1.21:3001', {
+    fetch('https://ai-chat-app-backend.vercel.app', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
