@@ -83,91 +83,90 @@ function App() {
 
   return (
     <div className="App">
-      <form onSubmit={handleSubmit}>
+      <div className="main-contents">
+        <form onSubmit={handleSubmit}>
+          
+          <div className='heading-container'>
+              <input 
+                type='text'
+                id='hello'
+                className='input-celeb-name'
+                placeholder={heading}
+                onFocus={(e) => {
+                  resetChatHeading(e.target);
+                }}
+                onBlur={e => {
+                  setChatHeading(e.target);
+                }}
+                onKeyUp={(e) => {
+                  resizeInputField(e.target, e.target.value.length + 1);
+                }}
+              ></input>
+          </div>
+
+          <br></br>
+          <br></br>
+
+          <textarea
+            className="text-areas"
+            placeholder="Mood (Optional)"
+            value={mood} 
+            onChange={(e) => setMood(e.target.value)}
+          ></textarea>
+
+          <br></br>
+
+          <textarea
+            className="text-areas"
+            placeholder="Message"
+            value={message} 
+            onChange={(e) => {
+              setMessage(e.target.value);
+              processSendButtonDisabled(person, e.target.value.trim());
+            }}
+            required
+          ></textarea>
+
+          <br></br>
+          <br></br>
+
+          <input
+            className="send-button"
+            type="image"
+            src="send-custom.png"
+            name="submit"
+            width="30"
+            disabled={sendButtonDisabled}
+            alt='Send'
+            onSubmit={handleSubmit}
+          ></input>
         
-        <div className='heading-container'>
-            <input 
-              type='text'
-              id='hello'
-              className='input-celeb-name'
-              placeholder={heading}
-              onFocus={(e) => {
-                resetChatHeading(e.target);
-              }}
-              onBlur={e => {
-                setChatHeading(e.target);
-              }}
-              onKeyUp={(e) => {
-                resizeInputField(e.target, e.target.value.length + 1);
-              }}
-            ></input>
+        </form>
+      
+        <br></br>
+          
+        <div className="response-area">
+        { response && 
+        <div className="response">
+          <b className="person-name">{person}:</b> {response}
+        </div> }
         </div>
 
-        <br></br>
-        <br></br>
-
-        <textarea
-          className="text-areas"
-          placeholder="Mood (Optional)"
-          value={mood} 
-          onChange={(e) => setMood(e.target.value)}
-        ></textarea>
-
-        <br></br>
-
-        <textarea
-          className="text-areas"
-          placeholder="Message"
-          value={message} 
-          onChange={(e) => {
-            setMessage(e.target.value);
-            processSendButtonDisabled(person, e.target.value.trim());
-          }}
-          required
-        ></textarea>
-
-        <br></br>
-        <br></br>
-
-        <input
-          className="send-button"
-          type="image"
-          src="send-custom.png"
-          name="submit"
-          width="30"
-          disabled={sendButtonDisabled}
-          alt='Send'
-          onSubmit={handleSubmit}
-        ></input>
-      
-      </form>
-      
-      <br></br>
-        
-      <div className="response-area">
-      { response && 
-      <div className="response">
-        <b className="person-name">{person}:</b> {response}
-      </div> }
+        <div className="social">
+          <p className="made-by-text">Follow me</p>
+          <input
+            className="bio-icon"
+            type="image"
+            src="bio_img.png"
+            name="button"
+            width="40"
+            alt='Insta'
+            onClick={() => {
+              window.open('https://bio.link/thatssatya', '_blank');
+            }}
+          ></input>
+        </div>
       </div>
-
-      <div className="social">
-      <input
-          className="insta-icon"
-          type="image"
-          src="instagram.png"
-          name="button"
-          width="30"
-          alt='Insta'
-          onClick={() => {
-            window.open('https://instagram.com/thatssatya', '_blank');
-          }}
-          // onSubmit={handleSubmit}
-        >
-          {/* <a href="https://instagram.com/thatssatya" target="_blank"></a> */}
-          </input>
-      </div>
-
     </div>
   );
 }
