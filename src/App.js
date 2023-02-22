@@ -143,11 +143,13 @@ function App() {
       </form>
       
       <br></br>
-
+        
+      <div className="response-area">
       { response && 
       <div className="response">
         <b className="person-name">{person}:</b> {response}
       </div> }
+      </div>
 
       <div className="social">
       <input

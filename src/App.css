@@ -92,7 +92,7 @@
   /* align-self: flex-end; */
   /* align-content: flex-end; */
   position: relative;
-  top: 50%;
+  bottom: -35%;
 }
 
 /* .insta-icon { */
@@ -100,3 +100,7 @@
   /* flex-direction: column; */
   /* align-content: end; */
 /* } */
+
+.response-area{
+  height: 20ch;
+}
