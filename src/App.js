@@ -11,8 +11,8 @@ function App() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    
-    fetch('https://ai-chat-app-backend.vercel.app', {
+
+    fetch(process.env.REACT_APP_BACKEND_SERVER, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
