@@ -8,9 +8,13 @@ function App() {
   const [mood, setMood] = useState('');
   const [heading, setHeading] = useState('Chat with?');
   const [sendButtonDisabled, setSendButtonDisabled] = useState(true);
+  const [loadingHidden, setLoadingHidden] = useState(true);
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    setResponse('');
+    setLoadingHidden(false);
 
     fetch(process.env.REACT_APP_BACKEND_SERVER, {
       method: 'POST',
@@ -47,6 +51,7 @@ function App() {
     setPerson('');
     processSendButtonDisabled('', message);
     setResponse('');
+    setLoadingHidden(true);
     resizeInputField(e, newHeading.length);
 
     e.value = '';
@@ -146,13 +151,17 @@ function App() {
         <br></br>
           
         <div className="response-area">
-        { response && 
-        <div className="response">
-          <b className="person-name">{person}:</b> {response}
-        </div> }
+        { (response) ?
+          (<div className="response">
+            <b className="person-name">{person}:</b> {response}
+          </div>) :
+          (!loadingHidden && <div className="loading">
+            <img src="loading.svg" width="30ch" hidden={loadingHidden} alt="Loading"></img>
+          </div>) }
         </div>
-
-        <div className="social">
+      </div>
+      <div className="social">
+        <footer>
           <p className="made-by-text">Follow me</p>
           <input
             className="bio-icon"
@@ -165,8 +174,8 @@ function App() {
               window.open('https://bio.link/thatssatya', '_blank');
             }}
           ></input>
+        </footer>
         </div>
-      </div>
     </div>
   );
 }
