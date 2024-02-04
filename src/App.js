@@ -20,6 +20,7 @@ function App() {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+        [process.env.REACT_APP_BACKEND_KEY]: process.env.REACT_APP_BACKEND_SECRET
       },
       body: JSON.stringify({ person, mood, message }),
     })
